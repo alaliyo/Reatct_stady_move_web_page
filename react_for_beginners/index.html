@@ -10,18 +10,23 @@
     <script type="text/babel">
         const root = document.getElementById("root");
 
-        const Title = (
+        const Title = () => (
             <h3 id="title" onMouseEnter={() => console.log("mouse")}>
                 Hello I`m a title
             </h3>
             );
 
-        const Btn = (
+        const Btn = () => (
             <button onClick={() => console.log("클릭")}>클릭</button>
-            ); 
+            );
 
-        const container = React.createElement("div", null, [Title, Btn]);
+        const Container = () => (
+            <div>
+                <Title />
+                <Btn />
+            </div>
+        );
 
-        ReactDOM.render(container, root)
+        ReactDOM.render(<Container />, root)
     </script>
 </html>
