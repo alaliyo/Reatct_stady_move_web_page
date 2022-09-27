@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+    </head>
+    <body>
+        <span>클릭 수 : 0</span>
+        <button id="btn">Click me</button>
+        <script>
+            const button = document.querySelector("#btn");
+            const span = document.querySelector("span");
+            let counter = 0;
+
+            function handleClick() {
+                counter = counter + 1;
+                span.innerText = `클릭 수 : ${counter}`
+            }
+
+            button.addEventListener("click", handleClick);
+        </script>
+    </body>
+</html>
