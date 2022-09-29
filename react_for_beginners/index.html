@@ -9,24 +9,26 @@
 
     <script type="text/babel">
         const root = document.getElementById("root");
+        let counter = 0;
 
-        const Title = () => (
-            <h3 id="title" onMouseEnter={() => console.log("mouse")}>
-                Hello I`m a title
-            </h3>
-            );
+        function countUp() {
+            counter = counter +1;
+            render()
+        }
 
-        const Btn = () => (
-            <button onClick={() => console.log("클릭")}>클릭</button>
-            );
+        function render() {
+            ReactDOM.render(<Container />, root)
+        }
 
-        const Container = () => (
-            <div>
-                <Title />
-                <Btn />
-            </div>
-        );
+        function Container() {
+            return (
+                <div>
+                    <h3>클릭 수 : {counter}</h3>
+                    <button onClick={countUp}>클릭</button>
+                </div>
+            )
+        }
 
-        ReactDOM.render(<Container />, root)
+        render()
     </script>
 </html>
