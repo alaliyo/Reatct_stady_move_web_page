@@ -9,26 +9,17 @@
 
     <script type="text/babel">
         const root = document.getElementById("root");
-        let counter = 0;
 
-        function countUp() {
-            counter = counter +1;
-            render()
-        }
-
-        function render() {
-            ReactDOM.render(<Container />, root)
-        }
-
-        function Container() {
+        function App() {
+            const [counter, modifier] = React.useState(0);
             return (
                 <div>
                     <h3>클릭 수 : {counter}</h3>
-                    <button onClick={countUp}>클릭</button>
+                    <button>클릭</button>
                 </div>
             )
         }
 
-        render()
+        ReactDOM.render(<App />, root)
     </script>
 </html>
