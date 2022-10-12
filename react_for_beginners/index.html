@@ -8,8 +8,8 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
     <script type="text/babel">
-        
-        function App() {
+
+        function MinutesToHours() {
             const [amount, setAmount] = React.useState(0);
             const [inverted, setInverted] = React.useState(false);
 
@@ -25,8 +25,6 @@
 
             return (
                 <div>
-                    <h1>시간 변환기</h1>
-
                     <div>
                         <label htmlFor="minutes">분</label>
                         <input
@@ -52,6 +50,34 @@
                     </div>
                     <button onClick={reset}>다시</button>
                     <button onClick={onInvert}>{inverted ? "시 -> 분" : "분 -> 시"}</button>
+                </div>
+            )
+        }
+
+        function KmToMiles() {
+            return (
+                <h3>KM 2 M</h3>
+            )
+        }
+
+        function App() {
+            const [index, setIndex] = React.useState("0");
+            
+            const onSelect = (event) => {
+                setIndex(event.target.value);
+            }
+            return (
+                <div>
+                    <h1>변환기</h1>
+                    <select value={index} onChange={onSelect}>
+                        <option value="xx">메롱</option>
+                        <option value="0">분 & 시</option>
+                        <option value="1">Km & Miles</option>
+                    </select>
+                    <hr/>
+                    {index === "xx" ? "메롱이다~!" : null}
+                    {index === "0" ? <MinutesToHours /> : null}
+                    {index === "1" ? <KmToMiles /> : null}
                 </div>
             )
         }
