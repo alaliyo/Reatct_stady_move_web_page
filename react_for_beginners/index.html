@@ -6,80 +6,29 @@
     <script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-
     <script type="text/babel">
 
-        function MinutesToHours() {
-            const [amount, setAmount] = React.useState(0);
-            const [inverted, setInverted] = React.useState(false);
-
-            const onChange = (event) => {
-                setAmount(event.target.value);
-            }
-
-            const reset = () => {setAmount(0)};
-            const onInvert = () => {
-                reset();
-                setInverted((current) => !current);
-            }
-
-            return (
-                <div>
-                    <div>
-                        <label htmlFor="minutes">분</label>
-                        <input
-                            value={inverted ? amount *60 : amount}
-                            id="minutes"
-                            placeholder="Minutes"
-                            type="number"
-                            onChange={onChange}
-                            disabled={inverted}
-                        />
-                    </div>
-
-                    <div>
-                        <label htmlFor="hours">시간</label>
-                        <input
-                            value={inverted ? amount : Math.round(amount / 60)}
-                            id="hours"
-                            placeholder="Hours"
-                            type="number"
-                            onChange={onChange}
-                            disabled={!inverted}
-                        />
-                    </div>
-                    <button onClick={reset}>다시</button>
-                    <button onClick={onInvert}>{inverted ? "시 -> 분" : "분 -> 시"}</button>
-                </div>
-            )
-        }
-
-        function KmToMiles() {
-            return (
-                <h3>KM 2 M</h3>
-            )
+        function Btn({text, big}) {
+            console.log(text, big);
+            return <button style={{
+                backgroundColor: "aquamarine",
+                color: "white",
+                padding: "7px 14px",
+                border: 0,
+                borderRadius: 10,
+                fontSize: big ? 18 : 16,
+            }}>
+               {text}
+            </button>;
         }
 
         function App() {
-            const [index, setIndex] = React.useState("0");
-            
-            const onSelect = (event) => {
-                setIndex(event.target.value);
-            }
             return (
                 <div>
-                    <h1>변환기</h1>
-                    <select value={index} onChange={onSelect}>
-                        <option value="xx">메롱</option>
-                        <option value="0">분 & 시</option>
-                        <option value="1">Km & Miles</option>
-                    </select>
-                    <hr/>
-                    {index === "xx" ? "메롱이다~!" : null}
-                    {index === "0" ? <MinutesToHours /> : null}
-                    {index === "1" ? <KmToMiles /> : null}
+                    <Btn text="저장" big={true}/>
+                    <Btn text="확인" big={false}/>
                 </div>
-            )
+            );
         }
 
         const root = document.getElementById("root");
