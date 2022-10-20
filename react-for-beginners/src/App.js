@@ -1,44 +1,34 @@
-import { useState, useEffect } from "react";
+import { useState } from 'react';
 
 function App() {
-  const [keyword, setkeyword] = useState("");
-  const [conter, setValue] = useState(0);
-  
-  const onChange = (event) => setkeyword(event.target.value);
-  const onClick = () => setValue((prev) => prev + 1);
+  const [toDo, setToDo] = useState("");
+  const [toDos, setToDos] = useState([]);
 
-  useEffect(() => {
-    console.log("api");
-  }, []);
-
-  useEffect(() => {
-    if (keyword !== "" && keyword.length > 5) {
-      console.log("keyword");
+  const onChange = (event) => setToDo(event.target.value);
+  const onSubmit = (event) => {
+    event.preventDefault();
+    if (toDo === "") {
+      return;
     }
-  }, [keyword]);
+    setToDos((currentArray) => [toDo, ...currentArray]);
+    setToDo("");
+  };
+  console.log(toDos);
 
-  useEffect(() => {
-    console.log("conter");
-  }, [conter])
-
-  useEffect(() => {
-    console.log("메롱")
-  }, [conter, keyword])
-
-
-  
   return (
     <div>
-      <input
-        value={keyword}
-        onChange={onChange}
-        type="text"
-        placeholder="검색창"
-      />
-      <h1>{conter}</h1>
-      <button onClick={onClick}>클릭</button>
-    </div>
-  );
+      <h1>My To Dos ({toDos.length})</h1>
+      <form onSubmit={onSubmit}>
+        <input
+          onChange={onChange}
+          evalue={toDo}
+          type="text"
+          placeholder="스케줄을 입력하세요."
+        />
+        <button>Add To Do</button>
+      </form>
+  </div>
+  ) 
 }
 
 export default App;
